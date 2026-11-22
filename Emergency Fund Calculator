@@ -1,0 +1,22 @@
+name = input("Enter your name: ")
+age = int(input("Enter your age: "))
+earnings = int(input("Enter your monthly income: "))
+monthly_savings = int(input("Enter your savings: "))   
+if monthly_savings > earnings:
+    print("Not possible to save more than what you earn, or mention if its black money")
+house_expenses = int(input("Monthly rent or EMI: "))
+medical_expenses = int(input("Monthly medical expenses: "))
+insurance_expenses = int(input("Monthly medical and health insurance: "))
+utility_expenses = int(input("Monthly utility expenses "))
+grocery_expenses = int(input("Monthly grocery expenses "))
+travel_expenses = int(input("Monthly petrol and commutation cost: "))
+other_expenses = int(input("Monthly expenses incurred on miscellaneous but necessary areas: "))
+         
+EF_month = house_expenses+medical_expenses+insurance_expenses+grocery_expenses+utility_expenses+travel_expenses+other_expenses
+Emergency_fund = EF_month * 6
+Fund_builder_time = Emergency_fund / monthly_savings          
+print("This fund advice is for: " + name)
+print("The person is of the age: " + str(age))          
+print("The person above has an earnings of: " + str(earnings) + " rupees")
+print("The total emergency fund required for a period of 6 months is :" + str(Emergency_fund) + " rupees")
+print("The total time in months taken to build this fund at the current rate of savings is :" + str(Fund_builder_time) + " months") 
