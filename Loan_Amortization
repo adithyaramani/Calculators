@@ -1,0 +1,42 @@
+loan_amount = float(input("Enter the loan amount: "))
+annual_interest_rate = float(input("Enter the annual interest rate (in %): "))
+loan_period_years = int(input("Enter the loan period in years: "))
+
+# Convert annual interest rate (in %) to monthly interest rate (in decimal)
+monthly_interest_rate = (annual_interest_rate / 100) / 12
+
+# Calculate total number of monthly payments
+total_payments = loan_period_years * 12
+
+# Calculate EMI using the formula
+# EMI = [P * r * (1 + r)^n] / [(1 + r)^n - 1]
+# P = loan_amount, r = monthly_interest_rate, n = total_payments
+
+if monthly_interest_rate == 0:
+    emi = loan_amount / total_payments
+else:
+    emi = loan_amount * monthly_interest_rate * (1 + monthly_interest_rate)**total_payments / ((1 + monthly_interest_rate)**total_payments - 1)
+
+# Store the calculated EMI value in a variable
+calculated_emi = emi
+
+print(f"Calculated EMI: {calculated_emi:.2f}")
+
+import pandas as pd
+
+schedule = []
+remaining_balance = loan_amount
+
+for i in range(1, total_payments + 1):
+    interest_paid = remaining_balance * monthly_interest_rate
+    principal_paid = calculated_emi - interest_paid
+    remaining_balance -= principal_paid
+    schedule.append({
+        'Month': i,
+        'Interest Paid': interest_paid,
+        'Principal Paid': principal_paid,
+        'Remaining Balance': remaining_balance
+    })
+
+amortization_schedule = pd.DataFrame(schedule)
+display(amortization_schedule.head())
